@@ -12,7 +12,7 @@ A System Administration exercise. Setting up my first server by following specif
 Debian is an open-source OS well known for its `apt` package manager, with over 59.000 software packages, and supporting a long list of compatible CPU architectures.
 
 ## What is a Virtual Machine
-A Virtual Machine (VM) is a virtual environment with its own CPU, memory, network interface and disk space. This virtual system, called *guest machine* is created from an existing physical hardware, also called *host machine*. The virtualization technology (hypervisor) allows sharing a system with multiple virtual environments. Oracle VirtualBox is a Type 2 hypervisor.
+A Virtual Machine (VM) is a virtual environment with its own CPU, memory, network interface and disk space. This virtual system, called *guest machine*, is created from an existing physical hardware, known as *host machine*. The virtualization technology (hypervisor) allows sharing a system with multiple virtual environments. Oracle VirtualBox is a Type 2 hypervisor.
 
 ## Setting up a server
 Proceed with a minimum install of Debian 11 on VirtualBox, downloading the image for the latest stable version. Any graphical interface is therefore forbidden.
@@ -26,7 +26,7 @@ apt-get update
 apt-get install sudo ufw vim openssh-server libpam-pwquality apparmor cron
 ```
 
-## Userful commands
+## Useful commands
 #### Users and groups
 ```shell
 adduser <username> #add a new user
@@ -50,7 +50,7 @@ lsblk #show partitions
 
 #### Sudo
 ```shell
-sudo #check if it's installed
+sudo -V #check if it's installed
 cd /var/log/sudo/ #check log files
 ```
 
