@@ -7,7 +7,7 @@ wall \
 #Disk Usage: $(df -h --total | awk '$NF=="-"{printf "%d/%dGb (%s)", $3, $2, $5}')
 #CPU load: $(top -b -n2 | grep Cpu | tail -n1 | cut -d ' ' -f6 | cut -d '%' -f1)%
 #Last boot: $(who -b | cut -c 23-)
-#LVM use: $(lvdisplay | grep -q 'available' && echo "yes" || echo "no")
+#LVM use: $(if [ $(lsblk | grep "lvm" | wc -l) == 0 ]; then echo no; else echo yes; fi)
 #Connections TCP: $(ss -neopt state established | sed -e 1d | wc -l) ESTABLISHED
 #User log: $(users | wc -w)
 #Network: IP $(ip route get 1.2.3.4 | awk '{printf $7}') ($(ip a | grep ether | cut -d " " -f6))
