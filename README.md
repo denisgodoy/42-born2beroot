@@ -56,7 +56,7 @@ cd /var/log/sudo/ #check log files
 
 #### UFW
 ```shell
-systemctl status ufw #check if it's installed and active
+ufw status #check if it's installed and active
 ufw status numbered #check current active rules
 ufw allow <port> #add a new rule to open port
 ufw delete allow <port> #remove v4 and v6 rules
@@ -68,4 +68,12 @@ systemctl status ssh #check if it's installed and active
 ss -tunlp #check socket statistics
 ssh <username>@<ip address> -p <port> #remotely connect to the server
 cd /etc/ssh && vim sshd_config #modify the file to open or close a port
+```
+
+#### Cron
+```shell
+systemctl stop cron #stop showing script
+systemctl disable cron #disable cron
+systemctl enable cron #enable cron
+systemctl start cron #start showing script
 ```
