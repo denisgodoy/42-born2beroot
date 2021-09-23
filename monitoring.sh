@@ -1,13 +1,13 @@
 #!/bin/bash
-echo -e "Broadcast message from root@$HOSTNAME ($(ps -p $$ -o tty=)) ($(date +"%a %b %d %H:%M:%S %Y")):\n
-#Architecture: $(uname -a)
+wall \
+"#Architecture: $(uname -a)
 #CPU physical: $(lscpu -b -p=Socket | grep -v '^#' | sort -u | wc -l)
 #vCPU: $(nproc)
 #Memory Usage: $(free -m | awk 'NR==2{printf "%s/%sMB (%.2f%%)", $3, $2, $3*100/$2}') 
 #Disk Usage: $(df -h --total | awk '$NF=="-"{printf "%d/%dGb (%s)", $3, $2, $5}')
 #CPU load: $(top -b -n2 | grep Cpu | tail -n1 | cut -d ' ' -f6 | cut -d '%' -f1)%
 #Last boot: $(who -b | cut -c 23-)
-#LVM use: $(vgdisplay | grep -q 'lvm2' && echo "yes" || echo "no")
+#LVM use: $(lvdisplay | grep -q 'available' && echo "yes" || echo "no")
 #Connections TCP: $(ss -neopt state established | sed -e 1d | wc -l) ESTABLISHED
 #User log: $(users | wc -w)
 #Network: IP $(ip route get 1.2.3.4 | awk '{printf $7}') ($(ip a | grep ether | cut -d " " -f6))
