@@ -4,9 +4,9 @@
 A System Administration exercise. Setting up my first server by following specific rules.
 
 - [About Debian](https://github.com/denisgodoy/42-born2beroot#about-debian)
-- [What is a Virtual Machine](https://github.com/denisgodoy/42-born2beroot#mandatory-part)
-- [Setting up a server](https://github.com/denisgodoy/42-born2beroot#bonus-part)
-- [Useful commands](https://github.com/denisgodoy/42-born2beroot#bonus-part)
+- [What is a Virtual Machine](https://github.com/denisgodoy/42-born2beroot#what-is-a-virtual-machine)
+- [Setting up a server](https://github.com/denisgodoy/42-born2beroot#setting-up-a-server)
+- [Useful commands](https://github.com/denisgodoy/42-born2beroot#useful-commands)
 
 ## About Debian
 Debian is an open-source OS well known for its `apt` package manager, with over 59.000 software packages, and supporting a long list of compatible CPU architectures.
