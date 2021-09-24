@@ -84,19 +84,20 @@ PASS_WARN_AGE 7 #send a warning 7 days before it expires
 Set up the partitions correctly.
 
 ```
-sda disk
-├─ sda1 /boot
-├─ sda2
-└─ sda5
-   └─ sda5_crypt
-      ├─ LVMGroup-root     /
-      ├─ LVMGroup-swap     [SWAP]
-      ├─ LVMGroup-home     /home
-      ├─ LVMGroup-var      /var
-      ├─ LVMGroup-srv      /srv
-      ├─ LVMGroup-tmp      /tmp
-      └─ LVMGroup-var--log /var/log
-sr0 rom
+NAME                    MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
+sda                       8:0    0   30G  0 disk  
+├─sda1                    8:1    0  477M  0 part  /boot
+├─sda2                    8:2    0    1K  0 part  
+└─sda5                    8:5    0 29.5G  0 part  
+  └─sda5_crypt          254:0    0 29.5G  0 crypt 
+    ├─LVMGroup-root     254:1    0  9.5G  0 lvm   /
+    ├─LVMGroup-swap     254:2    0  2.2G  0 lvm   [SWAP]
+    ├─LVMGroup-home     254:3    0  4.8G  0 lvm   /home
+    ├─LVMGroup-var      254:4    0  2.9G  0 lvm   /var
+    ├─LVMGroup-srv      254:5    0  2.9G  0 lvm   /srv
+    ├─LVMGroup-tmp      254:6    0  2.9G  0 lvm   /tmp
+    └─LVMGroup-var--log 254:7    0  4.4G  0 lvm   /var/log
+sr0                      11:0    1 1024M  0 rom   
 ```
 
 ## Useful commands
