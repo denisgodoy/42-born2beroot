@@ -43,8 +43,6 @@ Configure SSH client to allow remote connections.
 cd /etc/ssh && vim sshd_config #open and modify the file as it follows
 Port <port> #uncomment and change port
 PermitRootLogin no #uncomment line
-systemctl enable ssh #close the file and enable the service
-systemctl start ssh #start ssh service
 ```
 
 Configure UFW firewall to block access from other ports.
@@ -52,12 +50,6 @@ Configure UFW firewall to block access from other ports.
 ufw delete allow <port> #delete existing rules
 ufw allow <port> #create rules for an specific port
 ufw enable #enable the service
-```
-
-Enable AppArmor.
-```shell
-systemctl enable apparmor #enable the service
-systemctl start apparmor #start the service
 ```
 
 Implement a strong password policy with PAM-pwquality.
@@ -126,14 +118,20 @@ lsblk #show partitions
 ```shell
 sudo -V #check if it's installed
 cd /var/log/sudo/ #check log files
+sudo update-alternatives --config editor #change default editor for visudo
 ```
 
 #### UFW
 ```shell
 ufw status #check if it's installed and active
-ufw status numbered #check current active rules
 ufw allow <port> #add a new rule to open port
 ufw delete allow <port> #remove v4 and v6 rules
+```
+
+#### AppArmor
+```shell
+aa-status #check if it's installed
+systemctl status apparmor #check its current status
 ```
 
 #### SSH
