@@ -5,8 +5,8 @@ A System Administration exercise. Setting up my first server by following specif
 
 - [About Debian](https://github.com/denisgodoy/42-born2beroot#about-debian)
 - [What is a Virtual Machine](https://github.com/denisgodoy/42-born2beroot#what-is-a-virtual-machine)
-- [Mandatory part - set up a server](https://github.com/denisgodoy/42-born2beroot#setting-up-a-server)
-- [Bonus part - set up partitions](https://github.com/denisgodoy/42-born2beroot#setting-up-a-server)
+- [Mandatory part - set up a server](https://github.com/denisgodoy/42-born2beroot#mandatory-part---set-up-a-server)
+- [Bonus part - set up partitions](https://github.com/denisgodoy/42-born2beroot#bonus-part---set-up-partitions)
 - [Useful commands](https://github.com/denisgodoy/42-born2beroot#useful-commands)
 
 ## About Debian
@@ -84,19 +84,21 @@ PASS_WARN_AGE 7 #send a warning 7 days before it expires
 ## Bonus part - set up partitions
 Set up the partitions correctly.
 
+```
 sda disk
-|_ sda1 /boot
-|_ sda2
-|_ sda5
-	|_ sda5_crypt
-		|_ LVMGroup-root     /
-		|_ LVMGroup-swap     [SWAP]
-		|_ LVMGroup-home     /home
-		|_ LVMGroup-var      /var
-		|_ LVMGroup-srv      /srv
-		|_ LVMGroup-tmp      /tmp
-		|_ LVMGroup-var--log /var/log
+├─ sda1 /boot
+├─ sda2
+└─ sda5
+   └─ sda5_crypt
+      ├─ LVMGroup-root     /
+      ├─ LVMGroup-swap     [SWAP]
+      ├─ LVMGroup-home     /home
+      ├─ LVMGroup-var      /var
+      ├─ LVMGroup-srv      /srv
+      ├─ LVMGroup-tmp      /tmp
+      └─ LVMGroup-var--log /var/log
 sr0 rom
+```
 
 ## Useful commands
 #### Users and groups
