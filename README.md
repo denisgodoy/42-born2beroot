@@ -5,7 +5,8 @@ A System Administration exercise. Setting up my first server by following specif
 
 - [About Debian](https://github.com/denisgodoy/42-born2beroot#about-debian)
 - [What is a Virtual Machine](https://github.com/denisgodoy/42-born2beroot#what-is-a-virtual-machine)
-- [Setting up a server](https://github.com/denisgodoy/42-born2beroot#setting-up-a-server)
+- [Mandatory part - set up a server](https://github.com/denisgodoy/42-born2beroot#setting-up-a-server)
+- [Bonus part - set up partitions](https://github.com/denisgodoy/42-born2beroot#setting-up-a-server)
 - [Useful commands](https://github.com/denisgodoy/42-born2beroot#useful-commands)
 
 ## About Debian
@@ -14,7 +15,7 @@ Debian is an open-source OS well known for its `apt` package manager, with over 
 ## What is a Virtual Machine
 A Virtual Machine (VM) is a virtual environment with its own CPU, memory, network interface and disk space. This virtual system, called *guest machine*, is created from an existing physical hardware, known as *host machine*. The virtualization technology (hypervisor) allows sharing a system with multiple virtual environments. Oracle VirtualBox is a Type 2 hypervisor.
 
-## Setting up a server
+## Mandatory part - set up a server
 Proceed with a minimum install of Debian 11 on VirtualBox, downloading the image for the latest stable version. Any graphical interface is therefore forbidden.
 
 Create the necessary partion for `/boot` and a new encrypted volume group. This volume group will then be splitted in (for mandatory part): `/`, `/swap`and `/home`.
@@ -79,6 +80,23 @@ PASS_MAX_DAYS 30 #expire every 30 days
 PASS_MIN_DAYS 2 #minimum number of days for password modification
 PASS_WARN_AGE 7 #send a warning 7 days before it expires
 ```
+
+## Bonus part - set up partitions
+Set up the partitions correctly.
+
+sda disk
+|_ sda1 /boot
+|_ sda2
+|_ sda5
+	|_ sda5_crypt
+		|_ LVMGroup-root     /
+		|_ LVMGroup-swap     [SWAP]
+		|_ LVMGroup-home     /home
+		|_ LVMGroup-var      /var
+		|_ LVMGroup-srv      /srv
+		|_ LVMGroup-tmp      /tmp
+		|_ LVMGroup-var--log /var/log
+sr0 rom
 
 ## Useful commands
 #### Users and groups
