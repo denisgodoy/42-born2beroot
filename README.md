@@ -51,8 +51,7 @@ Configure UFW firewall to block access from other ports.
 ```shell
 ufw delete allow <port> #delete existing rules
 ufw allow <port> #create rules for an specific port
-systemctl enable ufw #enable the service
-systemctl start ufw #start the service
+ufw enable #enable the service
 ```
 
 Enable AppArmor.
