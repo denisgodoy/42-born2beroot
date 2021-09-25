@@ -93,13 +93,18 @@ sr0                      11:0    1 1024M  0 rom
 ```
 
 ## Useful commands
-#### Users and groups
+#### AppArmor
 ```shell
-adduser <username> #add a new user
-usermod -aG <groupname> <username> #add user to an existing group
-groups <username> #check if user belongs to any groups
-groupadd <groupname> #add a new group
-passwd <username> #change user password
+aa-status #check if it's installed
+systemctl status apparmor #check its current status
+```
+
+#### Cron
+```shell
+systemctl stop cron #stop showing script
+systemctl disable cron #disable cron
+systemctl enable cron #enable cron
+systemctl start cron #start showing script
 ```
 
 #### Hostname
@@ -109,13 +114,27 @@ vim /etc/hosts #edit the file replacing the old name
 hostnamectl status #check the changes after reboot
 ```
 
+#### Operating system
+```shell
+head -n 2 /etc/os-release #check the OS
+```
+
 #### Partitions
 ```shell
 lsblk #show partitions
 ```
 
+#### SSH
+```shell
+systemctl status ssh #check if it's installed and active
+ss -tunlp #check socket statistics
+ssh <username>@<ip address> -p <port> #remotely connect to the server
+cd /etc/ssh && vim sshd_config #modify the file to open or close a port
+```
+
 #### Sudo
 ```shell
+visudo #open sudo configuration file
 sudo -V #check if it's installed
 cd /var/log/sudo/ #check log files
 sudo update-alternatives --config editor #change default editor for visudo
@@ -128,24 +147,14 @@ ufw allow <port> #add a new rule to open port
 ufw delete allow <port> #remove v4 and v6 rules
 ```
 
-#### AppArmor
+#### Users and groups
 ```shell
-aa-status #check if it's installed
-systemctl status apparmor #check its current status
-```
-
-#### SSH
-```shell
-systemctl status ssh #check if it's installed and active
-ss -tunlp #check socket statistics
-ssh <username>@<ip address> -p <port> #remotely connect to the server
-cd /etc/ssh && vim sshd_config #modify the file to open or close a port
-```
-
-#### Cron
-```shell
-systemctl stop cron #stop showing script
-systemctl disable cron #disable cron
-systemctl enable cron #enable cron
-systemctl start cron #start showing script
+adduser <username> #add a new user
+userdel <username> #delete an existing user
+usermod -aG <groupname> <username> #add user to an existing group
+groups <username> #check if user belongs to any groups
+groupadd <groupname> #add a new group
+deluser <username> <groupname> #remove user from a group
+groupdel <groupname> #delete an existing group
+passwd <username> #change user password
 ```
