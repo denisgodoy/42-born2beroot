@@ -12,13 +12,27 @@ A System Administration exercise. Setting up my first server by following specif
 ## About Debian
 Debian is an open-source OS well known for its `apt` package manager, with over 59.000 software packages, and supporting a long list of compatible CPU architectures.
 
+| Feature | CentOS | Debian |
+|:-------:|:------:|:------:|
+| Free/open-source | :heavy_check_mark: | :heavy_check_mark: |
+| Not affiliated | | :heavy_check_mark: |
+| Multiple architecture | | :heavy_check_mark: |
+| Packages | | :heavy_check_mark: |
+| Update frequency | | :heavy_check_mark: |
+| Easy to upgrade | | :heavy_check_mark: |
+| Market preference | :heavy_check_mark: | |
+
+`apt` stands for Advanced Packaging Tool. It handles software installation and removal completely on the command line, unlike `aptitude`, which is a front-end packaging tool, adding an user interface to the functionality.
+
 ## What is a Virtual Machine
-A Virtual Machine (VM) is a virtual environment with its own CPU, memory, network interface and disk space. This virtual system, called *guest machine*, is created from an existing physical hardware, known as *host machine*. The virtualization technology (hypervisor) allows sharing a system with multiple virtual environments. Oracle VirtualBox is a Type 2 hypervisor.
+A Virtual Machine (VM) is a virtual environment with its own CPU, memory, network interface and disk space. This virtual system, also called *guest*, is created from an existing physical hardware, known as *host*. The virtualization technology (*hypervisor*) allows sharing a system with multiple virtual environments, partitioning from the rest of the system so the software inside a VM can't interfere with the host's OS.  Oracle VirtualBox is a Type 2 hypervisor, executed on the OS like a layer of software or application.
 
 ## Mandatory part - set up a server
 Proceed with a minimum install of Debian 11 on VirtualBox, downloading the image for the latest stable version. Any graphical interface is therefore forbidden.
 
-Create the necessary partion for `/boot` and a new encrypted volume group. This volume group will then be splitted in (for mandatory part): `/`, `/swap`and `/home`.
+Create the necessary partion for `/boot` and a new encrypted volume group. This volume group will then be splitted in logical volumes (LVM): `/`, `/swap`and `/home`.
+
+LVM are dynamic partitions that can be created, resized or deleted from the command line while the server is still running. No reboot is necessary to make the kernel aware of any changes. Specially useful with multiple disks.
 
 Run the OS as root and install the mandatory sofware packages.
 
@@ -27,7 +41,7 @@ apt-get update
 apt-get install sudo ufw vim openssh-server libpam-pwquality apparmor cron
 ```
 
-Configure sudo and sudoers permissions.
+Configure sudo and sudoers permissions, giving *superuser* privileges to commom users.
 ```shell
 visudo #open and modify the file as it follows
 Defaults  badpass_message="Wrong password. Try again." #create a default message for wrong password input
@@ -38,19 +52,14 @@ Defaults  log_input, log_output #save both input and output logs
 Defaults  requiretty #TTY mode is required
 ```
 
-Configure SSH client to allow remote connections.
+Configure SSH client to allow remote connections, providing secure access authentication and encrypted data communications between two computers over the internet.
 ```shell
 cd /etc/ssh && vim sshd_config #open and modify the file as it follows
 Port <port> #uncomment and change port
 PermitRootLogin no #uncomment line
 ```
 
-Configure UFW firewall to block access from other ports.
-```shell
-ufw delete allow <port> #delete existing rules
-ufw allow <port> #create rules for an specific port
-ufw enable #enable the service
-```
+Configure UFW - an easy-to-use IPv4/IPv6 host-based firewall. It blocks access from non-authorized connection ports.
 
 Implement a strong password policy with PAM-pwquality.
 ```shell
@@ -71,6 +80,10 @@ PASS_MAX_DAYS 30 #expire every 30 days
 PASS_MIN_DAYS 2 #minimum number of days for password modification
 PASS_WARN_AGE 7 #send a warning 7 days before it expires
 ```
+
+Enable AppArmor, which is a Mandatory Access Control (MAC) security system that binds access control attributes to programs rather than to users. This helps keep the server safe, restricting actions processes can take, preventing applications from turning evil.
+
+Enable Cron, an utility used to schedule commands for automatic execution at specific intervals. The `crontab` command creates a file with instructions for the cron daemon to execute.
 
 ## Bonus part - set up partitions
 Set up the partitions correctly.
@@ -101,6 +114,7 @@ systemctl status apparmor #check its current status
 
 #### Cron
 ```shell
+crontab -e #open file and add new jobs
 systemctl stop cron #stop showing script
 systemctl disable cron #disable cron
 systemctl enable cron #enable cron
