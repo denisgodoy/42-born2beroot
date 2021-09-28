@@ -5,7 +5,7 @@ wall \
 #vCPU: $(nproc)
 #Memory Usage: $(free -m | awk 'NR==2{printf "%s/%sMB (%.2f%%)", $3, $2, $3*100/$2}') 
 #Disk Usage: $(df -h --total | awk '$NF=="-"{printf "%d/%dGb (%s)", $3, $2, $5}')
-#CPU load: $(top -b -n1 | grep Cpu | tail -n1 | cut -d ' ' -f6 | cut -d '%' -f1)%
+#CPU load: $(top -b -n2 | grep Cpu | awk 'END{print 100-$8;}')%
 #Last boot: $(who -b | cut -c 23-)
 #LVM use: $(if [ $(lsblk | grep "lvm" | wc -l) == 0 ]; then echo no; else echo yes; fi)
 #Connections TCP: $(ss -neopt state established | sed -e 1d | wc -l) ESTABLISHED
