@@ -3,11 +3,16 @@
 # Born2beroot :computer:
 A System Administration exercise. Setting up my first server by following specific rules.
 
+- [Evaluation](https://github.com/denisgodoy/42-born2beroot#evaluation)
 - [About Debian](https://github.com/denisgodoy/42-born2beroot#about-debian)
 - [What is a Virtual Machine](https://github.com/denisgodoy/42-born2beroot#what-is-a-virtual-machine)
 - [Mandatory part - set up a server](https://github.com/denisgodoy/42-born2beroot#mandatory-part---set-up-a-server)
 - [Bonus part - set up partitions](https://github.com/denisgodoy/42-born2beroot#bonus-part---set-up-partitions)
 - [Useful commands](https://github.com/denisgodoy/42-born2beroot#useful-commands)
+
+## Evaluation
+![Evaluation](https://user-images.githubusercontent.com/56933400/135363170-7f328f0b-04d2-44d6-abbf-650eed9f54ab.png)
+![Badge](https://game.42sp.org.br/static/assets/achievements/born2beroote.png)
 
 ## About Debian
 Debian is an open-source OS well known for its `apt` package manager, with over 59.000 software packages, and supporting a long list of compatible CPU architectures.
